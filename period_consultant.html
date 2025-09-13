@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Period Consultant</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fce4ec; }
+    header { background: #ad1457; color: white; padding: 20px; text-align: center; }
+    nav { text-align: center; margin: 15px; }
+    nav a { margin: 0 15px; text-decoration: none; color: #ad1457; font-weight: bold; }
+    .page { padding: 20px; }
+    .hidden { display: none; }
+    h1 { color: #ad1457; }
+    select { margin-top: 10px; padding: 5px; }
+    .tagline { font-size: 20px; font-weight: bold; color: #444; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div style="text-align:right; padding:10px;">
+    <label for="language">🌐</label>
+    <select id="language" onchange="translateContent()">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+    </select>
+  </div>
+
+  <div id="home" class="page">
+    <header>
+      <h1 data-en="Welcome to Period Consultant" data-hi="पीरियड कंसल्टेंट में आपका स्वागत है"></h1>
+    </header>
+    <div style="text-align:center;">
+      <p class="tagline" data-en="Scan it & Know About Your Health" data-hi="स्कैन करें और अपने स्वास्थ्य के बारे में जानें"></p>
+      <p data-en="Choose a page below to continue:" data-hi="आगे बढ़ने के लिए नीचे एक पेज चुनें:"></p>
+    </div>
+    <nav>
+      <a href="#" onclick="showPage('issues')">Issues</a>
+      <a href="#" onclick="showPage('cycle')">Cycle Duration</a>
+      <a href="#" onclick="showPage('suggestion')">Suggestion</a>
+    </nav>
+  </div>
+
+  <div id="issues" class="page hidden">
+    <h1 data-en="What Issues Are You Facing?" data-hi="आपको कौन सी समस्याएँ हो रही हैं?"></h1>
+    <ul>
+      <li data-en="Cramps (Dysmenorrhea)" data-hi="दर्द (डिस्मेनोरिया)"></li>
+      <li data-en="PCOD / PCOS" data-hi="पीसीओडी / पीसीओएस"></li>
+      <li data-en="Heavy Bleeding (Menorrhagia)" data-hi="अत्यधिक रक्तस्राव (मेनोरेजिया)"></li>
+      <li data-en="Irregular Periods" data-hi="अनियमित पीरियड्स"></li>
+      <li data-en="Mood Swings" data-hi="मूड स्विंग्स"></li>
+      <li data-en="PMS (Premenstrual Syndrome)" data-hi="पीएमएस (प्रीमेंस्ट्रुअल सिंड्रोम)"></li>
+    </ul>
+    <nav>
+      <a href="#" onclick="showPage('home')">⬅ Back Home</a>
+    </nav>
+  </div>
+
+  <div id="cycle" class="page hidden">
+    <h1 data-en="Your Cycle Duration" data-hi="आपका चक्र अवधि"></h1>
+    <p data-en="Select your average period cycle length:" data-hi="अपनी औसत पीरियड्स चक्र अवधि चुनें:"></p>
+    <select>
+      <option data-en="28 Days" data-hi="28 दिन">28 Days</option>
+      <option data-en="30 Days" data-hi="30 दिन">30 Days</option>
+      <option data-en="35 Days" data-hi="35 दिन">35 Days</option>
+    </select>
+    <nav>
+      <a href="#" onclick="showPage('home')">⬅ Back Home</a>
+    </nav>
+  </div>
+
+  <div id="suggestion" class="page hidden">
+    <h1 data-en="Suggestion (Home Remedies)" data-hi="सुझाव (घरेलू उपाय)"></h1>
+    <p data-en="Here are some remedies for your issues:" data-hi="आपकी समस्याओं के लिए यहाँ कुछ घरेलू उपाय दिए गए हैं:"></p>
+    <ul>
+      <li data-en="Add flax seeds, chia seeds, and leafy vegetables to your diet." 
+          data-hi="अपने आहार में अलसी के बीज, चिया के बीज और हरी सब्जियाँ शामिल करें।"></li>
+      <li data-en="Practice Yoga: Butterfly pose, Surya Namaskar." 
+          data-hi="योग करें: बटरफ्लाई पोज़, सूर्य नमस्कार।"></li>
+      <li data-en="Daily 30 min walking or exercise." 
+          data-hi="रोजाना 30 मिनट पैदल चलें या व्यायाम करें।"></li>
+      <li data-en="Avoid sugar, fried, and processed foods." 
+          data-hi="चीनी, तली-भुनी और प्रोसेस्ड चीज़ें न खाएँ।"></li>
+    </ul>
+    <nav>
+      <a href="#" onclick="showPage('home')">⬅ Back Home</a>
+    </nav>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    function translateContent() {
+      const lang = document.getElementById("language").value;
+      document.querySelectorAll("[data-en]").forEach(el => {
+        el.innerText = el.getAttribute("data-" + lang);
+      });
+    }
+  </script>
+</body>
+</html>
